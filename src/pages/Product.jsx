@@ -59,7 +59,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     // Simulasi pemanggilan API
-    fetch("https://mepriceapi.vercel.app/barang/")
+    fetch("/api/barang/")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();

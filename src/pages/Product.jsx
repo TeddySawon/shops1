@@ -1,8 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
-import Header from "../components/Header"; // Asumsi ada komponen Header
+import Header from "../components/Header";
 import "../css/product.css"; 
 
-// Komponen Modal Pembayaran
 const CheckoutModal = ({ isOpen, onClose, purchaseInfo }) => {
   if (!isOpen) return null;
 
@@ -10,10 +9,10 @@ const CheckoutModal = ({ isOpen, onClose, purchaseInfo }) => {
     <div className="modal-overlay">
       <div className="modal-content p-6 shadow-2xl">
         <h2 className="text-2xl font-bold text-green-600 mb-4 flex items-center">
-          <span className="mr-2 text-3xl">✅</span> Pembayaran Berhasil!
+          <span className="mr-2 text-3xl">✅</span> Payment Successful!
         </h2>
         <p className="text-gray-700 mb-4">
-          Terima kasih atas pembelian Anda. Berikut detailnya:
+          Thank you for your purchase. Here are the details:
         </p>
 
         <div className="bg-gray-50 p-4 rounded-lg mb-4 text-sm">
@@ -28,7 +27,7 @@ const CheckoutModal = ({ isOpen, onClose, purchaseInfo }) => {
         </div>
         
         <p className="text-xl font-bold text-gray-800 mb-6">
-          Total Pembayaran:{" "}
+          Total payment:{" "}
           <span className="text-red-500">
             Rp {purchaseInfo.totalPrice.toLocaleString("id-ID")}
           </span>
@@ -58,7 +57,6 @@ export default function ProductPage() {
   const [purchaseData, setPurchaseData] = useState(null);
 
   useEffect(() => {
-    // Simulasi pemanggilan API
     fetch("/api/barang/")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -75,10 +73,7 @@ export default function ProductPage() {
       });
   }, []);
 
-  // Ambil daftar kategori unik untuk filter
   const categories = ["all", ...new Set(allProducts.map((p) => p.tipe))];
-
-  // LOGIKA PENCARIAN, FILTER, DAN SORTING
   const filteredAndSortedProducts = useMemo(() => {
     let currentProducts = allProducts.filter((product) => {
       const matchesSearch = product.nama
@@ -103,28 +98,23 @@ export default function ProductPage() {
         currentProducts.sort((a, b) => b.harga - a.harga);
         break;
       default:
-        // Biarkan urutan asli dari API
         break;
     }
 
     return currentProducts;
   }, [allProducts, searchTerm, filterType, sortBy]);
 
-  // LOGIKA KERANJANG
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
-        // Jika produk sudah ada, tingkatkan kuantitas
         return prevCart.map((item) =>
           item.id === product.id ? { ...item, qty: item.qty + 1 } : item
         );
       } else {
-        // Jika produk belum ada, tambahkan dengan kuantitas 1
         return [...prevCart, { ...product, qty: 1 }];
       }
     });
-    // Buka keranjang saat menambahkan item
     setIsCartOpen(true);
   };
 
@@ -142,7 +132,7 @@ export default function ProductPage() {
           }
           return item;
         })
-        .filter(Boolean); // Hapus item jika qty <= 0
+        .filter(Boolean);
       return updatedCart;
     });
   };
@@ -157,7 +147,6 @@ export default function ProductPage() {
     0
   );
 
-  // LOGIKA PEMBAYARAN
   const handleCheckout = () => {
     if (cart.length === 0) {
       alert("Keranjang Anda kosong!");
@@ -172,9 +161,9 @@ export default function ProductPage() {
     };
 
     setPurchaseData(purchaseDetails);
-    setIsModalOpen(true); // Tampilkan modal
-    setCart([]); // Reset keranjang
-    setIsCartOpen(false); // Tutup sidebar keranjang
+    setIsModalOpen(true); 
+    setCart([]); 
+    setIsCartOpen(false);
   };
 
 
@@ -183,7 +172,7 @@ export default function ProductPage() {
       <div className="flex justify-center items-center min-h-screen text-lg">
         <div className="loading-spinner">
           <div className="spinner"></div>
-          <p className="mt-4 text-gray-600">Memuat data produk...</p>
+          <p className="mt-4 text-gray-600">Loading product data...</p>
         </div>
       </div>
     );
@@ -194,9 +183,9 @@ export default function ProductPage() {
         <div className="error-card glass-effect p-8 rounded-2xl text-center">
           <div className="error-icon mb-4">⚠️</div>
           <h3 className="text-xl font-semibold text-red-600 mb-2">
-            Oops! Terjadi Kesalahan
+            Oops! There is an error
           </h3>
-          <p className="text-gray-600">Gagal memuat produk: {error}</p>
+          <p className="text-gray-600">Failed to load product: {error}</p>
         </div>
       </div>
     );
@@ -268,10 +257,10 @@ export default function ProductPage() {
           <div className="empty-state text-center py-20">
               <div className="empty-icon mb-4">😔</div>
               <h3 className="text-2xl font-semibold text-gray-700 mb-2">
-                Produk Tidak Ditemukan
+                Product Not Found
               </h3>
               <p className="text-gray-500">
-                Coba ubah kata kunci atau kriteria filter Anda
+                Try changing your keywords or filter criteria
               </p>
             </div>
         ) : (

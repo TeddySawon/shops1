@@ -28,16 +28,13 @@ export default function Homepage() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Terjadi kesalahan:", err);
+        console.error("There is an error:", err);
         setError(err.message);
         setLoading(false);
       });
   }, []);
 
-  // Get unique categories
   const categories = ["all", ...new Set(products.map((p) => p.tipe))];
-
-  // Filter products
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.nama
       .toLowerCase()
@@ -52,7 +49,7 @@ export default function Homepage() {
       <div className="flex justify-center items-center min-h-screen">
         <div className="loading-spinner">
           <div className="spinner"></div>
-          <p className="mt-4 text-gray-600 text-lg">Memuat produk terbaik...</p>
+          <p className="mt-4 text-gray-600 text-lg">Contains the best products...</p>
         </div>
       </div>
     );
@@ -63,7 +60,7 @@ export default function Homepage() {
         <div className="error-card glass-effect p-8 rounded-2xl text-center">
           <div className="error-icon mb-4">⚠️</div>
           <h3 className="text-xl font-semibold text-red-600 mb-2">
-            Oops! Terjadi Kesalahan
+            Oops! There is an error
           </h3>
           <p className="text-gray-600">{error}</p>
         </div>
@@ -142,11 +139,11 @@ export default function Homepage() {
           {/* Section Header */}
           <div className="section-header text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-3">
-              Pilihan Produk{" "}
-              <span className="gradient-text">Unggulan</span>
+              Product choice{" "}
+              <span className="gradient-text">Featured</span>
             </h2>
             <p className="text-gray-600 text-lg">
-              {filteredProducts.length} produk tersedia untuk Anda
+              {filteredProducts.length} products are available to you
             </p>
           </div>
 
@@ -155,10 +152,10 @@ export default function Homepage() {
             <div className="empty-state text-center py-20">
               <div className="empty-icon mb-4">🔍</div>
               <h3 className="text-2xl font-semibold text-gray-700 mb-2">
-                Produk Tidak Ditemukan
+                Product Not Found
               </h3>
               <p className="text-gray-500">
-                Coba ubah kata kunci atau kategori pencarian Anda
+                Try changing your keywords or search categories
               </p>
             </div>
           ) : (
@@ -232,28 +229,28 @@ export default function Homepage() {
       <section className="features-section py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-1200 mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-            Kenapa Memilih MePrice?
+            Why Choose MePrice?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="feature-card text-center p-6 animate-fadeIn">
               <div className="feature-icon mb-4">🚚</div>
-              <h3 className="font-bold text-xl mb-2">Pengiriman Cepat</h3>
+              <h3 className="font-bold text-xl mb-2">Fast Delivery</h3>
               <p className="text-gray-600">
-                Produk sampai dengan cepat dan aman ke tangan Anda
+                The product arrives quickly and safely in your hands
               </p>
             </div>
             <div className="feature-card text-center p-6 animate-fadeIn" style={{ animationDelay: "0.1s" }}>
               <div className="feature-icon mb-4">💳</div>
-              <h3 className="font-bold text-xl mb-2">Pembayaran Mudah</h3>
+              <h3 className="font-bold text-xl mb-2">Payment is easy</h3>
               <p className="text-gray-600">
-                Berbagai metode pembayaran untuk kemudahan Anda
+                Various payment methods for your convenience
               </p>
             </div>
             <div className="feature-card text-center p-6 animate-fadeIn" style={{ animationDelay: "0.2s" }}>
               <div className="feature-icon mb-4">⭐</div>
-              <h3 className="font-bold text-xl mb-2">Produk Berkualitas</h3>
+              <h3 className="font-bold text-xl mb-2">Quality Products</h3>
               <p className="text-gray-600">
-                Hanya produk terbaik dengan kualitas terjamin
+                Only the best products with guaranteed quality
               </p>
             </div>
           </div>

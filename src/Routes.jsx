@@ -7,7 +7,6 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <RouterRoutes>
-        {/* Define your route here */}
         <Route path="/shops1/" element={<Homepage />} />
         <Route path="/shops1/homepage/" element={<Homepage />} />
         <Route path="/shops1/product/" element={<Product />} />

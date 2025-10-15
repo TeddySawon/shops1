@@ -7,7 +7,6 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  // deteksi scroll untuk ubah style header
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -15,8 +14,7 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // tutup menu saat navigasi
+  
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);

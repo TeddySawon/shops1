@@ -12,7 +12,7 @@ export default function Homepage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
-    fetch("https://mepriceapi.vercel.app/api/barang/")
+    fetch("/api/barang/")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();

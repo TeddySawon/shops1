@@ -1,0 +1,225 @@
+/* ========== Base Styling ========== */
+.product-page-container {
+  padding-top: 4rem; /* Sesuaikan dengan tinggi header */
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.max-w-1400 {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ========== Controls & Filter Section ========== */
+.controls-bar {
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  animation: slideDown 0.4s ease-out;
+}
+
+.search-input-product {
+  padding: 0.75rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.search-input-product:focus {
+  border-color: var(--steel-blue);
+  box-shadow: 0 0 0 3px rgba(178, 181, 224, 0.5);
+  outline: none;
+}
+
+.filter-select,
+.sort-select {
+  padding: 0.75rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none; /* Menghapus gaya default select */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%234A5568'%3e%3cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.5em;
+}
+
+.filter-select:hover,
+.sort-select:hover {
+  border-color: var(--pastel-purple);
+}
+
+/* ========== Product Card Styling (Reusing Global.css utilities) ========== */
+.product-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: white;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(178, 181, 224, 0.25);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.add-to-cart-btn {
+  background: var(--pastel-purple);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background: var(--steel-blue);
+  transform: translateY(-2px);
+}
+
+/* ========== Cart Sidebar Styling ========== */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  max-width: 90vw;
+  height: 100%;
+  background: white;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0);
+}
+
+.cart-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.cart-item-card {
+  background: #f7fafc;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.remove-item-btn {
+  color: #e53e3e;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.remove-item-btn:hover {
+  color: #c53030;
+  transform: scale(1.1);
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--pastel-purple), var(--steel-blue));
+  color: white;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  box-shadow: 0 8px 20px rgba(178, 181, 224, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Floating Cart Icon */
+.cart-float-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--steel-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 90;
+}
+
+.cart-float-btn:hover {
+  transform: scale(1.1) rotate(-5deg);
+  background: var(--pastel-purple);
+}
+
+.cart-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #e53e3e;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Modal for Checkout Info */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1rem;
+  max-width: 500px;
+  width: 90%;
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .controls-bar > div {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
